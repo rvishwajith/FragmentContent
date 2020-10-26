@@ -1,5 +1,3 @@
-|Document Start|
-
 |Start|
 |Title|Azure
 |Description|An underwater exploration game created in Scenekit on iPadOS and macOS.
@@ -9,7 +7,7 @@
 |Thumbnail|
 |End|
 
-|Document End|
+|Break|
 
 |Start|
 |Title|Fragment
