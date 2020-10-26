@@ -4,6 +4,7 @@
 |Author|Rohith Vishwajith
 |Chapters|Planning my Project/Looking for Inspiration/Designing the Ocean/Dynamically Animating Sharks in Azure
 |Languages|Swift/C++
+|Thumbnail|
 |End|
 
 |Start|
@@ -12,4 +13,5 @@
 |Author|Rohith Vishwajith
 |Chapters|Designing Fragment/Fragment's Core Website/Fragment's File System with Github/Creating Accounts with Firebase
 |Languages|Javascript/HTML/CSS
+|Thumbnail|
 |End|
