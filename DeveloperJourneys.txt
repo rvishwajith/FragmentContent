@@ -7,7 +7,7 @@
 |Chapter|Designing the Ocean
 |Chapter|Dynamically Animating Sharks in Azure
 |Languages|Swift/C++
-|Thumbnail|
+|Thumbnail|https://raw.githubusercontent.com/rvishwajith/FragmentContent/main/DeveloperJourneys/Images/AzureThumbnail.png
 |End|
 
 |Break|
