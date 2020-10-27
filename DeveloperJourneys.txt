@@ -11,7 +11,7 @@ Things that are complete go here.
 |Languages|Swift/C++
 |Thumbnail|https://raw.githubusercontent.com/rvishwajith/FragmentContent/main/DeveloperJourneys/Images/AzureThumbnail.png
 
-|Break|
+
 
 Things that are incomplete go here.
 
@@ -22,3 +22,5 @@ Things that are incomplete go here.
 |Chapters|Designing Fragment/Fragment's Core Website/Fragment's File System with Github/Creating Accounts with Firebase
 |Languages|Javascript/HTML/CSS
 |Thumbnail|
+
+|Break|
