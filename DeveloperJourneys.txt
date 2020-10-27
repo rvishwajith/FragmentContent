@@ -8,19 +8,23 @@ Things that are complete go here.
 |Chapter|Looking for Inspiration
 |Chapter|Designing the Ocean
 |Chapter|Dynamically Animating Sharks in Azure
-|Languages|Swift/C++
+|Language|Swift
+|Language|C++
 |Thumbnail|https://raw.githubusercontent.com/rvishwajith/FragmentContent/main/DeveloperJourneys/Images/AzureThumbnail.png
 
-
-
-Things that are incomplete go here.
 
 |Start|
 |Title|Fragment
 |Description|Creating the fragment website to help teach development.
 |Author|Rohith Vishwajith
-|Chapters|Designing Fragment/Fragment's Core Website/Fragment's File System with Github/Creating Accounts with Firebase
-|Languages|Javascript/HTML/CSS
-|Thumbnail|
+|Chapter|Designing Fragment
+|Chapter|Fragment's Core Website
+|Chapter|Fragment's File System with Github
+|Chapter|Creating Accounts with Firebase
+|Language|Javascript
+|Language|HTML
+|Language|CSS
+
+Things that are incomplete go here.
 
 |Break|
