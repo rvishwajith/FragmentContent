@@ -2,7 +2,10 @@
 |Title|Azure
 |Description|An underwater exploration game created in Scenekit on iPadOS and macOS.
 |Author|Rohith Vishwajith
-|Chapters|Planning my Project/Looking for Inspiration/Designing the Ocean/Dynamically Animating Sharks in Azure
+|Chapter|Planning my Project
+|Chapter|Looking for Inspiration
+|Chapter|Designing the Ocean
+|Chapter|Dynamically Animating Sharks in Azure
 |Languages|Swift/C++
 |Thumbnail|
 |End|
