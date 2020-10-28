@@ -1,5 +1,17 @@
 Completed articles go here.
 
+|Start|
+|Title|Catmull-Rom Splines in 2D & 3D Space
+|Author|Rohith Vishwajith
+|Link|
+|Diff|5
+
+|Start|
+|Title|Procedural Rigging with Rope Simulations in GLSL
+|Author|Rohith Vishwajith
+|Link|
+|Diff|8
+
 |Break|
 
 Incomplete articles go here.
