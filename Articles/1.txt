@@ -1,0 +1,33 @@
+|Author|Rohith Vishwajith
+|History|This article is incomplete. It was initially written on 9/15/20, with revisions last made on 10/27/20.
+|Title|Catmull-Rom Splines in 2D & 3D Space
+|Subtitle|The contents of this article are implemented using SceneKit. Interactive elements in this blog have been created using Three.JS.
+
+|Head|Breaking Down Catmull-Rom Splines
+|Sub|Wikipedia link for Catmull-rom splines ->
+|Sublink|https://en.wikipedia.org/wiki/Centripetal_Catmull%E2%80%93Rom_spline
+|Body|A catmull-rom spline is a generated curve that goes through every single control point. This is alternative to some curves, which only approximate going through prescribed points. Catmull-rom splines are often used in vector design graphics such as Figma and Adobe Illustrator. Below is an example of a 2-D catmull-rom spline, which was created using four control points. The spline can have any number of prescribed points, however performance will drop further with the addition of each point. This article will focus exclusively on 4-point splines.
+|Image|https://upload.wikimedia.org/wikipedia/commons/4/42/Catmull-Rom_Spline.png
+|Body|Other control points can be implemented through repetition of the multiplication required. Catmull-rom splines can also handle going over other points in the curve, which can make them far more useful compared to other splines, although slightly more expensive.
+
+|Head|Generating a 2D Curve
+|Body|The catmull-rom spline can be implemented programmatically easily. We can create a method that can take in four control points. For even more points, instead of individual parameters, a dynamic array could be used. Here’s an example of a simple helper method for this spline:
+|Code|
+|Body|The spline requires four (or more) control points to generate a curve from. These points can be denoted as P0, P1, P2, and P3.The points generate an F(t) function, where T denotes time based on the control points’ subscripts (P1 = 1 second). We can get the resulting x and y values in this 2D curve, and use them however we need to, by passing in t to represent our progression on the curve. 
+
+|Head|2D Curve Implementation
+|Body|Below is an interactive demo of a four-point spline. Drag the handles in order to have the spline adjust to the points. Notice how the points can overlap each other without the curve being distorted.
+|Demo|
+|Body|A 3D version of the curve is also easy to implement, however requires additional data. We can expand support from a Vector2, with X and Y components, to a Vector3, with X, Y, and Z components. Adjusting our code to account for the third dimension would give us the following helper method for our spline:
+|Code|
+
+|Head|Use Cases in 3D
+|Body|Once Catmull-rom curves are understood, implementing them is easy in both 2D and 3D spaces. But what would they be used for? The most common use case would be with path creation. A limitless number of potential points with perfect adaptation makes Catmull-rom splines a great option to use for an object to follow a path.
+|Code|They have also been implemented in every advanced 3D software, such as Blender and Maya, for path creation and curve-based deformation. Helper methods make them easy to use, as the output is an easily applicable value using helper methods.
+
+|Head|Using Splines in Azure
+|Sub|Learn More About Azure ->
+|Sub|The Azure Development Journey ->
+|Body|They were also used as roller coasters in Planet Coaster, and were likely used in any dynamic wall-based system. However, I used them for a very different use case. By creating curves for large aquatic creatures, I was able to inexpensively deform the meshes in an impressively fluid and performant way with simple rope simulations instead of bones.
+|Image|
+|Body|To learn more about the implementation in Azure, check out my developer journey showcasing the process in creating my marine discovery app. I also wrote an article about the aforementioned rope simulations, click here to read about it.
