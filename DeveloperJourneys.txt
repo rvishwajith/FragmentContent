@@ -2,28 +2,20 @@ Things that are complete go here.
 
 |Start|
 |Title|Azure
-|Description|An underwater exploration game created in Scenekit on iPadOS and macOS.
+|Desc|An underwater exploration game created in Scenekit on iPadOS and macOS.
 |Author|Rohith Vishwajith
-|Chapter|Planning my Project
-|Chapter|Looking for Inspiration
-|Chapter|Designing the Ocean
-|Chapter|Dynamically Animating Sharks in Azure
-|Language|Swift
-|Language|C++
+|Lang|Swift
+|Lang|C++
 |Thumbnail|https://raw.githubusercontent.com/rvishwajith/FragmentContent/main/DeveloperJourneys/Images/AzureThumbnail.png
 
 
 |Start|
 |Title|Fragment
-|Description|Creating the fragment website to help teach development.
+|Desc|Creating the fragment website to help teach development.
 |Author|Rohith Vishwajith
-|Chapter|Designing Fragment
-|Chapter|Fragment's Core Website
-|Chapter|Fragment's File System with Github
-|Chapter|Creating Accounts with Firebase
-|Language|Javascript
-|Language|HTML
-|Language|CSS
+|Lang|Javascript
+|Lang|HTML
+|Lang|CSS
 
 |Break|
 
