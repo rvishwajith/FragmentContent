@@ -1,7 +1,7 @@
 Completed articles go here.
 
 |Start|
-|Title|Catmull-Rom Splines in 2D & 3D Space
+|Title|Smooth Curves with Catmull-Rom Splines
 |Author|Rohith Vishwajith
 |Link|
 |Diff|5
