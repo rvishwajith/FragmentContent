@@ -1,6 +1,6 @@
+|Title|Catmull-Rom Splines in 2D & 3D Space
 |Author|Rohith Vishwajith
 |History|This article is incomplete. It was initially written on 9/15/20, with revisions last made on 10/27/20.
-|Title|Catmull-Rom Splines in 2D & 3D Space
 |Subtitle|The contents of this article are implemented using SceneKit. Interactive elements in this blog have been created using Three.JS.
 
 |Head|Breaking Down Catmull-Rom Splines
@@ -40,3 +40,5 @@ They have also been implemented in every advanced 3D software, such as Blender a
 |Image|
 
 |Body|To learn more about the implementation in Azure, check out my developer journey showcasing the process in creating my marine discovery app. I also wrote an article about the aforementioned rope simulations, click here to read about it.
+
+|Break|
