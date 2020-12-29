@@ -28,7 +28,7 @@
 |Head|Use Cases in 3D
 |Body|Once Catmull-rom curves are understood, implementing them is easy in both 2D and 3D spaces. But what would they be used for? The most common use case would be with path creation. A limitless number of potential points with perfect adaptation makes Catmull-rom splines a great option to use for an object to follow a path.
 
-|Code|Code ehre
+|Code|Code here
 
 They have also been implemented in every advanced 3D software, such as Blender and Maya, for path creation and curve-based deformation. Helper methods make them easy to use, as the output is an easily applicable value using helper methods.
 
