@@ -13,7 +13,7 @@ Completed articles go here.
 |Diff|8
 
 |Start|
-|Title|Animatied Intro Screens on iOS
+|Title|Animated Intro Screens on iOS
 |Author|Rohith Vishwajith
 |Link|
 |Diff|3
