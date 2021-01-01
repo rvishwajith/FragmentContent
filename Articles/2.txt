@@ -44,19 +44,19 @@
 |Head|Rule 1 - Flocking Towards a Center
 |Body|The center of mass can be found by averaging the positions of every boid in a flock. Ot provides a general area for the boids to orbit around and interact in, helping keep them together and form the tight flock formation in certain areas. Vectors for every function are used a <i>offsets</i> rather than directly added calculations, because they are calculated frame by frame rather than as a single call.
 
-|Psuedo|centerOfMass() // a general rule for finding the overall center
-|Psuedo|    Vector center
+|Psuedo|centerOfMass() // A general rule for finding the overall center
+|Psuedo|    Vector result
 |Psuedo|
 |Psuedo|    FOR b in Boids
-|Pseudo|        center += b.position
+|Pseudo|        result += b.position
 |Pseudo|
-|Pseudo|    center /= Boids.length
-|psuedo|    RETURN center
+|Pseudo|    result /= Boids.length
+|psuedo|    RETURN result
 
 |Body|However, since boids are representative individual entities in a flock, they don't account for their own position when finding a center. Instead, they look for the <i>percieved center</i> of mass. The percieved center of mass can be found by ignoring the boid at the current index in the array amd accounting for its relative positon by subtracting it, as shown in the pseudocode below. Once we find the percieved center, we want the boids to go towards it slowly. For example, we can move 0.5% towards the percieved center when the update method is alled each time. synchronize this with the frame rate ofthe device for the best results, with higher framerates looking smoother.
 
 |Psuedo|rule1(Boid b)
-|Psuedo|    Vector pC // The percieved center vector
+|Psuedo|    Vector pC = <0, 0, 0> // Number of dimensions can change
 |Pseudo|
 |Psuedo|    FOR b2 in Boids
 |Psuedo|        IF b != b2 // Ignore duplicate boids
@@ -64,15 +64,42 @@
 |Psuedo|
 |Psuedo|    pC = pC / (Boids.length - 1)
 |Psuedo|
-|Psuedo|    finalVector = (pC - b) / 200 // 0.5% towards the percieved center
-|Psuedo|    RETURN finalVector
+|Psuedo|    result = (pC - b) / 200 // 0.5% towards the percieved center
+|Psuedo|    RETURN result
 
 |HeadSmall|Optimizations
 |Body|This code can be optimized quite easily. By initially calculating the overall center of mass and the length of the array - 1 and caching them, then they can be used as a starting point for every iteration in the loo. Instead of having to recalculate the center of mass, subtract the posiiton of the initial Boid b in each iteration to improve performance.
 
 
 |Head|Rule 2 - Avoiding Other Boids
-|Body|This rule is used to rpevent the boids from voerlapping each other. Since normally boids represent rreal-world objects, it wouldn't make sense for them to be going through each other, so this method makes boid steer clear of other boids.
+|Body|This rule is used to rpevent the boids from voerlapping each other. Since normally boids represent rreal-world objects, it wouldn't make sense for them to be going through each other, so this method makes boid steer clear of other boids. This method requires a given distance necessary to avoid other objects. For example, in Abzu fish stay about 1 meter from each other. However, in 2D applications of boids this will be affected by resolution when vectors are not used.
+
+|Psuedo|rule2(Boid b)
+|Psuedo|    distance = 100 // Threshold of distance between boids
+|Pseudo|    result = <0, 0, 0>
+|Psuedo|
+|Psuedo|    FOR b2 in Boids
+|Psuedo|        IF b != b2 // Ignore duplicate boids
+|Psuedo|            IF dist(b.position, b2.position) < distance
+|Pseudo|                result -= (b2.position - b.position)
+|Psuedo|
+|Psuedo|    RETURN result
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
