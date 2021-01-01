@@ -64,12 +64,11 @@
 |Psuedo|
 |Psuedo|    pC = pC / (Boids.length - 1)
 |Psuedo|
-|Psuedo|    result = (pC - b) / 200 // 0.5% towards the percieved center
+|Psuedo|    result = (pC - b.position) / 200 // 0.5% towards the percieved center
 |Psuedo|    RETURN result
 
 |HeadSmall|Optimizations
 |Body|This code can be optimized quite easily. By initially calculating the overall center of mass and the length of the array - 1 and caching them, then they can be used as a starting point for every iteration in the loo. Instead of having to recalculate the center of mass, subtract the posiiton of the initial Boid b in each iteration to improve performance.
-
 
 |Head|Rule 2 - Avoiding Other Boids
 |Body|This rule is used to rpevent the boids from voerlapping each other. Since normally boids represent rreal-world objects, it wouldn't make sense for them to be going through each other, so this method makes boid steer clear of other boids. This method requires a given distance necessary to avoid other objects. For example, in Abzu fish stay about 1 meter from each other. However, in 2D applications of boids this will be affected by resolution when vectors are not used.
@@ -84,6 +83,111 @@
 |Pseudo|                result -= (b2.position - b.position)
 |Psuedo|
 |Psuedo|    RETURN result
+
+|Body|Keep in mind that this applies to not one boid, but two poids next to each other, since they are both the same distance away from each other. So inr eality, they'll be oushed in two opposite directions rather than a single push. This could affect the distance threshold you've set. The tighter you want your formation, the lower the distance threshold should be.
+
+|HeadSmall|Optimizations
+|Body|This method is already fairly well optimized, as caching variables once for multiple uses isn't significant here. However, making sure that checks are efficient is important. For example, checking if 2 boids are equal can be made faster by assigning each boid an index value, such as their position in the array and comparing those. This also saves time for a programmer's checks.
+
+|Head|Rule 3 - Matching Boid Velocities
+|Body|Rule 3 is similar to the first rule except it is centered around velocities instead of the boid's positions. This time we calculate a <i>percieved velocity</i>, the same way we calculated a percieved center in the first rule. Jut like the second rule, this requires a value to increment how much the speed should change in order to take steps to matching other boids' velocities. I decided to divide by 10, so the boid will take 1/10th of the entire step necessary to match the velocity of the other boids.
+
+|Pseudo|Boids[] // this is a global vairable accesible in other methods
+|Pseudo|
+|Pseudo|Update()
+|Pseudo|    FOR b in Boids
+|Pseudo|        vector1 = rule1(b) // Boids flock to the center of mass
+|Pseudo|        vector2 = rule2(b) // Boids avoid other boids
+|Pseudo|        vector3 = rule3(b) // Boids try to match the speed of other boids
+|Pseudo|
+|Pseudo|        // additional rules can be added directly after
+|Pseudo|        vector4 = rule4(b)
+|Pseudo|        vectorX = ruleX(b)
+|Pseudo|
+|Pseudo|        // limiting speed after all changes to velocity
+|Pseudo|
+|Pseudo|        finalVector = vector1 + vector2 + vector3 ... + vectorX
+|Pseudo|        b.velocity += finalVector // Adjust direction and speed
+|Pseudo|
+|Pseudo|        b.position += b.velocity // Update the position to the new position
+
+|Body|Sometimes this velocity is calculated only to nearby boids, by checking the disrance the same way as is done in the second rule and comparing it to a threshold value. This can be useful for multiple subschools of fish or other more segregated behaviors.
+
+|HeadSmall|Optimizations
+|Body|Just like in the first rule, the overall average of velocity can be calculated directly in the method, rather than in every iteration of the loop. Once again, because these loops aare nested every additional operation is a squared increase, which is important for boids due to the generally high number of memebrs they have.
+
+|Head|Final Pseudocode
+|Body|Putting these three steps of the boids algorithm together yields the following pseudocode, which includes all the basic steps starting from the rendering loop (or some other call) and moving through the first three steps.
+
+|Pseudo|Boids[] // this is a global vairable accesible in other methods
+|Pseudo|
+|Pseudo|Update()
+|Pseudo|    FOR b in Boids
+|Pseudo|        vector1 = rule1(b) // Boids flock to the center of mass
+|Pseudo|        vector2 = rule2(b) // Boids avoid other boids
+|Pseudo|        vector3 = rule3(b) // Boids try to match the speed of other boids
+|Pseudo|
+|Pseudo|        // additional rules can be added directly after
+|Pseudo|        vector4 = rule4(b)
+|Pseudo|        vectorX = ruleX(b)
+|Pseudo|
+|Pseudo|        // limiting speed after all changes to velocity
+|Pseudo|
+|Pseudo|        finalVector = vector1 + vector2 + vector3 ... + vectorX
+|Pseudo|        b.velocity += finalVector // Adjust direction and speed
+|Pseudo|
+|Pseudo|        b.position += b.velocity // Update the position to the new position
+|Pseudo|
+|Psuedo|rule1(Boid b)
+|Psuedo|    Vector pC = <0, 0, 0> // Number of dimensions can change
+|Pseudo|
+|Psuedo|    FOR b2 in Boids
+|Psuedo|        IF b != b2 // Ignore duplicate boids
+|Psuedo|            pC += b2.position
+|Psuedo|
+|Psuedo|    pC = pC / (Boids.length - 1)
+|Psuedo|
+|Psuedo|    result = (pC - b.position) / 200 // 0.5% towards the percieved center
+|Psuedo|    RETURN result
+|Pseudo|
+|Psuedo|rule2(Boid b)
+|Psuedo|    distance = 100 // Threshold of distance between boids
+|Pseudo|    result = <0, 0, 0>
+|Psuedo|
+|Psuedo|    FOR b2 in Boids
+|Psuedo|        IF b != b2 // Ignore duplicate boids
+|Psuedo|            IF magnitude(b.position - b2.position) < distance
+|Pseudo|                result -= (b2.position - b.position)
+|Psuedo|
+|Psuedo|    RETURN result
+|Pseudo|
+|Psuedo|rule3(Boid b)
+|Psuedo|    Vector pV = <0, 0, 0> // Number of dimensions can change
+|Psuedo|
+|Pseudo|
+|Psuedo|    FOR b2 in Boids
+|Psuedo|        IF b != b2 // Ignore duplicate boids
+|Psuedo|            pV += b2.velocity
+|Psuedo|
+|Psuedo|    pV = pV / (Boids.length - 1)
+|Psuedo|
+|Psuedo|    result = (pV - b.velocity) / 10 // 0.5% towards the percieved center
+|Psuedo|    RETURN result
+
+|Head|Limiting Boid Speeds
+|Body|Chances are, the use-case for your boids does not aexpect them to be able to move instantaneously from one point to another. In roder to prevent this affect, we can limit the speed without affecting its direction. This requires another variable for the maximum velocity you'd like to set, which is equal to the maximum magnitude of the velocity you''d allow. I decided to set mine to 0.033, or 2/60. Since the max speed I want an object to move is 2m/s, and there are 60 frames in one second on most devices, I divided the maximum move value to be equivalent to the movement in one frame. Keep in mind that this should be done after changes to the velocity are made, which would likely be after all steps are completed.
+
+|Psuedo|limitSpeed(Boid b)
+|Psuedo|    Double maxMag = 0.033 // note this is a double, not a vector
+|Psuedo|
+|Psuedo|    IF magnitude(b.velocity) > maxMag
+|Pseudo|        b.velocity = (b.velocity / magnitude(b.velocity)) * maxMag
+
+|HeadSmall|Optimizations
+|Body|This is another fairly well-optimized calculation, but to reduce the number of variables you can increase the scope of the maximum allowed magnitude to be outside of any loops in order to ensure it doe not have to be reinstantiated every step of the loop. Limiting velocity does not require a nested loop, since it is independent of other boids, so this will not have as significant of an effect on performance as making changes in steps 1 and 3.
+
+|Body|Other steps can be taken to improve the Boids algorithm or make it adhere better to your goals, which I talk about in my successor to this article. Some of the things I talk about are predator-prey relationsips, moving towards goalpoints, and limiting the boids to certain areas.
+
 
 
 
