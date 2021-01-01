@@ -1,0 +1,78 @@
+|Title|Simulating Flocking with the Boids Algorithm
+|Author|Rohith Vishwajith
+
+|Image|
+|Caption|Boids algorithms were used in Giant Squid Studios’ Abzu to create a beautiful tornade of fish.
+
+|Head|Intro to Boids
+|Body|Boids are a type of flocking algorithm developed by Craig Reynolds in 1986. Boid stands for <bird-oid object>, signifying how it has been used to realistically represent flocks of birds or schools of fish without any special intelligence and easily transaltable, standardized behaviours. The simple alogirthms behidns Boids are what make them the best option for performant flocking simulations, with applications in both movies and games. <i>Boids work for both 2D and 3D applications.</i>
+
+|Head|Real World Applications of Boids
+|Body|Using Boids as an automated process in animation as opposed to mimickking and manually recreating real life swarms was a massive step forward. The most in-depth implementation of boids in modern video game was in Giant Squid Studios' underwater explorer <i>Abzu</i>. Abzu used a combination of highly performant shaders and an enhanced verion of the boids algorithm to bring thousans of fish to life at once, accurately recreating massive real life <a href = "https://en.wikipedia.org/wiki/Bait_ball">bait balls</a>. Boids have also been used by Disney in the 1994 animated movie <i>The Lion King</i> to simulate both herds of wildebeest anf birds overhead, creating the iconic stampede sequence.
+
+|Image|
+|Caption|The buffalo stampede sequence in the Lion King combined boids and a custom art style to portray the scene's mass panic.
+
+|Body|Boids are so spcial because of their avility to adapt to realistic situations with simple algorithms, including fear and attraction, which allows them to be used for accurate prpedator-prey simulations.
+
+|Head|The Big Three of Boids
+|Body|Despite the percieved complexity and dynamic actions of boids, they are mainly driven by three simple forces: seperation, alignment, and cohesion. Additional rules can be added for more dynamic behaviors such as fleeing and gathering in specific locations.
+
+|Head|Setting up a Boids Simulation
+|Body|Boids rules should be called after they are instantiated in a loop. For example, in a 3D simulation, boics can be placed in random points in a sphere and encapsulated in an array populated with all Boid classes.
+
+|HeadSmall|Using Boids Rules
+|Once a loop has been setup, liekly in the same rendering loop used by default and called at the same time as the other operations, the boid's behaviours can be called following the pseudocode example below. This will work in any game engine or framework with proper vector support and a rendering loop, and I've implemented examples below using Javascript.
+
+|Pseudo|Boids[] // this is a global vairable accesible in other methods
+|Pseudo|
+|Pseudo|Update()
+|Pseudo|    FOR b in Boids
+|Pseudo|        vector1 = rule1(b) // Boids flock to the center of mass
+|Pseudo|        vector2 = rule2(b) // Boids avoid other boids
+|Pseudo|        vector3 = rule3(b) // Boids try to match the speed of other boids
+|Pseudo|
+|Pseudo|        // additional rules can be added directly after
+|Pseudo|        vector4 = rule4(b)
+|Pseudo|        vectorX = ruleX(b)
+|Pseudo|
+|Pseudo|        finalVector = vector1 + vector2 + vector3 ... + vectorX
+|Pseudo|        b.velocity += finalVector // Adjust direction and speed
+|Pseudo|
+|Pseudo|        b.position += b.velocity // Update the position to the new position
+
+|Head|Rule 1 - Flocking Towards a Center
+|Body|The center of mass can be found by averaging the positions of every boid in a flock. Ot provides a general area for the boids to orbit around and interact in, helping keep them together and form the tight flock formation in certain areas. Vectors for every function are used a <i>offsets</i> rather than directly added calculations, because they are calculated frame by frame rather than as a single call.
+
+|Psuedo|centerOfMass() // a general rule for finding the overall center
+|Psuedo|    Vector center
+|Psuedo|
+|Psuedo|    FOR b in Boids
+|Pseudo|        center += b.position
+|Pseudo|
+|Pseudo|    center /= Boids.length
+|psuedo|    RETURN center
+
+|Body|However, since boids are representative individual entities in a flock, they don't account for their own position when finding a center. Instead, they look for the <i>percieved center</i> of mass. The percieved center of mass can be found by ignoring the boid at the current index in the array amd accounting for its relative positon by subtracting it, as shown in the pseudocode below. Once we find the percieved center, we want the boids to go towards it slowly. For example, we can move 0.5% towards the percieved center when the update method is alled each time. synchronize this with the frame rate ofthe device for the best results, with higher framerates looking smoother.
+
+|Psuedo|rule1(Boid b)
+|Psuedo|    Vector pC // The percieved center vector
+|Pseudo|
+|Psuedo|    FOR b2 in Boids
+|Psuedo|        IF b != b2 // Ignore duplicate boids
+|Psuedo|            pC += b2.position
+|Psuedo|
+|Psuedo|    pC = pC / (Boids.length - 1)
+|Psuedo|
+|Psuedo|    finalVector = (pC - b) / 200 // 0.5% towards the percieved center
+|Psuedo|    RETURN finalVector
+
+|HeadSmall|Optimizations
+|Body|This code can be optimized quite easily. By initially calculating the overall center of mass and the length of the array - 1 and caching them, then they can be used as a starting point for every iteration in the loo. Instead of having to recalculate the center of mass, subtract the posiiton of the initial Boid b in each iteration to improve performance.
+
+
+|Head|Rule 2 - Avoiding Other Boids
+|Body|This rule is used to rpevent the boids from voerlapping each other. Since normally boids represent rreal-world objects, it wouldn't make sense for them to be going through each other, so this method makes boid steer clear of other boids.
+
+
+
