@@ -187,23 +187,3 @@
 |Body|This is another fairly well-optimized calculation, but to reduce the number of variables you can increase the scope of the maximum allowed magnitude to be outside of any loops in order to ensure it doe not have to be reinstantiated every step of the loop. Limiting velocity does not require a nested loop, since it is independent of other boids, so this will not have as significant of an effect on performance as making changes in steps 1 and 3.
 
 |Body|Other steps can be taken to improve the Boids algorithm or make it adhere better to your goals, which I talk about in my successor to this article. Some of the things I talk about are predator-prey relationsips, moving towards goalpoints, and limiting the boids to certain areas.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
