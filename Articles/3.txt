@@ -1,0 +1,5 @@
+|Title|Expanding on Boid Behaviours
+|Author|Rohith Vishwajith
+
+|Image|
+|Caption|Boids algorithms were used in Giant Squid Studios’ Abzu to create a beautiful tornade of fish.
