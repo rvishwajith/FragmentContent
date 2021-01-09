@@ -1,7 +1,7 @@
 |Title|Simulating Flocking with the Boids Algorithm
 |Author|Rohith Vishwajith
 
-|Image|
+|Image|https://raw.githubusercontent.com/rvishwajith/FragmentContent/main/Images/Flocking1.png
 |Caption|Boids algorithms were used in Giant Squid Studios’ Abzu to create a beautiful tornade of fish.
 
 |Head|Intro to Boids
@@ -10,7 +10,7 @@
 |Head|Real World Applications of Boids
 |Body|Using Boids as an automated process in animation as opposed to mimickking and manually recreating real life swarms was a massive step forward. The most in-depth implementation of boids in modern video game was in Giant Squid Studios' underwater explorer <i>Abzu</i>. Abzu used a combination of highly performant shaders and an enhanced verion of the boids algorithm to bring thousans of fish to life at once, accurately recreating massive real life <a href = "https://en.wikipedia.org/wiki/Bait_ball">bait balls</a>. Boids have also been used by Disney in the 1994 animated movie <i>The Lion King</i> to simulate both herds of wildebeest anf birds overhead, creating the iconic stampede sequence.
 
-|Image|
+|Image|https://raw.githubusercontent.com/rvishwajith/FragmentContent/main/Images/Flocking2.png
 |Caption|The buffalo stampede sequence in the Lion King combined boids and a custom art style to portray the scene's mass panic.
 
 |Body|Boids are so spcial because of their avility to adapt to realistic situations with simple algorithms, including fear and attraction, which allows them to be used for accurate prpedator-prey simulations.
