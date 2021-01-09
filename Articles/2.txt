@@ -5,7 +5,7 @@
 |Caption|Boids algorithms were used in Giant Squid Studios’ Abzu to create a beautiful tornade of fish.
 
 |Head|Intro to Boids
-|Body|Boids are a type of flocking algorithm developed by Craig Reynolds in 1986. Boid stands for <bird-oid object>, signifying how it has been used to realistically represent flocks of birds or schools of fish without any special intelligence and easily transaltable, standardized behaviours. The simple alogirthms behidns Boids are what make them the best option for performant flocking simulations, with applications in both movies and games. <i>Boids work for both 2D and 3D applications.</i>
+|Body|Boids are a type of flocking algorithm developed by Craig Reynolds in 1986. Boid stands for <b>bird-oid object</b>, signifying how it has been used to realistically represent flocks of birds or schools of fish without any special intelligence and easily transaltable, standardized behaviours. The simple alogirthms behidns Boids are what make them the best option for performant flocking simulations, with applications in both movies and games. <i>Boids work for both 2D and 3D applications.</i>
 
 |Head|Real World Applications of Boids
 |Body|Using Boids as an automated process in animation as opposed to mimickking and manually recreating real life swarms was a massive step forward. The most in-depth implementation of boids in modern video game was in Giant Squid Studios' underwater explorer <i>Abzu</i>. Abzu used a combination of highly performant shaders and an enhanced verion of the boids algorithm to bring thousans of fish to life at once, accurately recreating massive real life <a href = "https://en.wikipedia.org/wiki/Bait_ball">bait balls</a>. Boids have also been used by Disney in the 1994 animated movie <i>The Lion King</i> to simulate both herds of wildebeest anf birds overhead, creating the iconic stampede sequence.
@@ -175,7 +175,7 @@
 |Psuedo|    RETURN result
 
 |Head|Limiting Boid Speeds
-|Body|Chances are, the use-case for your boids does not aexpect them to be able to move instantaneously from one point to another. In roder to prevent this affect, we can limit the speed without affecting its direction. This requires another variable for the maximum velocity you'd like to set, which is equal to the maximum magnitude of the velocity you''d allow. I decided to set mine to 0.033, or 2/60. Since the max speed I want an object to move is 2m/s, and there are 60 frames in one second on most devices, I divided the maximum move value to be equivalent to the movement in one frame. Keep in mind that this should be done after changes to the velocity are made, which would likely be after all steps are completed.
+|Body|The use-case for your boids likely does not expect them to be able to move instantaneously from one point to another. In roder to prevent this affect, we can limit the speed without affecting its direction. This requires another variable for the maximum velocity you'd like to set, which is equal to the maximum magnitude of the velocity you''d allow. I decided to set mine to 0.033, or 2/60. Since the max speed I want an object to move is 2m/s, and there are 60 frames in one second on most devices, I divided the maximum move value to be equivalent to the movement in one frame. Keep in mind that this should be done after changes to the velocity are made, which would likely be after all steps are completed.
 
 |Psuedo|limitSpeed(Boid b)
 |Psuedo|    Double maxMag = 0.033 // note this is a double, not a vector
@@ -186,4 +186,9 @@
 |HeadSmall|Optimizations
 |Body|This is another fairly well-optimized calculation, but to reduce the number of variables you can increase the scope of the maximum allowed magnitude to be outside of any loops in order to ensure it doe not have to be reinstantiated every step of the loop. Limiting velocity does not require a nested loop, since it is independent of other boids, so this will not have as significant of an effect on performance as making changes in steps 1 and 3.
 
+|Head|Static Boids Demo
+
 |Body|Other steps can be taken to improve the Boids algorithm or make it adhere better to your goals, which I talk about in my successor to this article. Some of the things I talk about are predator-prey relationsips, moving towards goalpoints, and limiting the boids to certain areas.
+
+|Sub|Expanding on Boid Behaviours ->
+|Sublink|https://en.wikipedia.org/wiki/Centripetal_Catmull%E2%80%93Rom_spline

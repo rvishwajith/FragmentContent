@@ -1,0 +1,36 @@
+Cel Shading
+
+Examples:
+Zelda BOTW
+
+1. Directional lighting
+When writing shaders in Unity that interact with lighting it is common to use Surface Shaders. Surface shaders use code generation to automate the object's interaction with lights and global illumination. However, as our shader will only interact with a single directional light, it will not be necessary to use surface shaders.
+
+We will set up our shader to receive lighting data. Add the following code at the top of the Pass, just after its opening curly brace.
+
+The normals in appdata are populated automatically, while values in v2f must be manually populated in the vertex shader. As well, we want to transform the normal from object space to world space, as the light's direction is provided in world space. Add the following line to the vertex shader.
+
+The dot product takes in two vectors (of any length) and returns a single number. When the vectors are parallel in the same direction and are unit vectors (vectors of length 1), this number is 1. When they are perpendicular, it returns 0. As you move a vector away from parallel—towards perpendicular—the dot product result will move from 1 to 0 non-linearly. Note that when the angle between the vectors is greater than 90, the dot product will be negative.
+
+This has rendered out a realistic style of illumination. To modify it to be toon-like, we will divide the lighting into two bands: light and dark.
+
+2. Ambient light
+
+<Image of result>
+
+This looks good, but the dark side is too dark; right now it is completely black. Also, the edge between dark and light looks a bit sharp, but we'll deal with that later. For now, we will add ambient light.
+
+Ambient light represents light that bounces off the surfaces of objects in the area and is scattered in the atmosphere. We will model it as a light that affects all surfaces equally and is additive to the main directional light.
+
+<Image of result>
+
+You'll notice that modifying the intensity or color of the Directional Light in the scene does not affect our shader. We will add some code to include this in our lighting calculations.
+
+smoothstep takes in three values: a lower bound, an upper bound and a value expected to be between these two bounds. smoothstep returns a value between 0 and 1 based on how far this third value is between the bounds. (If it is outside the lower or upper bound, smoothstep returns a 0 or 1, respectively).
+
+3. Specular reflection
+Specular reflection models the individual, distinct reflections made by light sources. This reflection is view dependent, in that it is affected by the angle that the surface is viewed at. We will calculate the world view direction in the vertex shader and pass it into the fragment shader. This is the direction from the current vertex towards the camera.
+
+We control the size of the specular reflection using the pow function. We multiply NdotH by lightIntensity to ensure that the reflection is only drawn when the surface is lit. Note that _Glossiness is multiplied by itself to allow smaller values in the material editor to have a larger effect, and make it easier to work with the shader.
+
+We control the size of the specular reflection using the pow function. We multiply NdotH by lightIntensity to ensure that the reflection is only drawn when the surface is lit. Note that _Glossiness is multiplied by itself to allow smaller values in the material editor to have a larger effect, and make it easier to work with the shader.

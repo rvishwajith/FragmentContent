@@ -38,7 +38,7 @@ settings = {
   MOUSE_SIGN : -1,
   MOUSE_FORCE : 1.5,
   BOID_STYLE : 0,
-  DRAW_TRAILS : false
+  DRAW_TRAILS : true
 };
 
 //Thanks to http://harry.me/2011/02/17/neat-algorithms---flocking/ for the algorithm and vector class.
