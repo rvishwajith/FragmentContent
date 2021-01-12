@@ -1,5 +1,6 @@
 |Title|Simulating Flocking with the Boids Algorithm
 |Author|Rohith Vishwajith
+|Tags|Boid,Flock,Flocking,Fish,Bird,Fishes,Shark,Abzu,Disney
 
 |Image|https://raw.githubusercontent.com/rvishwajith/FragmentContent/main/Images/Flocking1.png
 |Caption|Boids algorithms were used in Giant Squid Studios’ Abzu to create a beautiful tornade of fish.
